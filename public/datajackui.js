@@ -1,4 +1,4 @@
-﻿// DataJackUI button injection (standalone plugin)
+// DataJackUI button injection (standalone plugin)
 
 // ============================================
 // GAMEPAD NAVIGATION SYSTEM - Inline Version
@@ -1278,9 +1278,11 @@
             /* Force overlay backdrops to follow the active theme (overrides inline styles) */
             .datajackui-settings-overlay,
             .datajackui-overlay,
+            .datajackui-confirm-overlay,
             .datajackui-loadedapps-overlay {
-                background: rgba(${theme.rgbString}, 0.12) !important;
-                backdrop-filter: blur(8px) !important;
+                background: rgba(9, 10, 15, 0.85) !important;
+                backdrop-filter: blur(20px) !important;
+                -webkit-backdrop-filter: blur(20px) !important;
             }
 
             /* Prefer overlay-scoped select rules to override theme CSS files */
@@ -1319,37 +1321,40 @@
                 box-shadow: 0 0 0 2px ${theme.shadow} !important;
             }
             .datajackui-btn {
-                padding: 12px 24px;
-                background: ${theme.bgSecondary};
-                border: 2px solid ${theme.border.replace("0.3", "0.5")};
+                padding: 10px 20px;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.18);
                 border-radius: 12px;
-                color: ${theme.text};
-                font-size: 15px;
+                color: #cbd5e1;
+                font-size: 14px;
                 font-weight: 600;
                 text-decoration: none;
-                transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+                transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
                 cursor: pointer;
-                box-shadow: 0 2px 8px ${theme.shadow};
-                letter-spacing: 0.3px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+                letter-spacing: -0.01em;
             }
             .datajackui-btn:hover:not([data-disabled="1"]) {
-                background: ${theme.bgHover};
-                transform: translateY(-2px);
-                box-shadow: 0 6px 20px ${theme.shadowHover};
-                border-color: ${theme.borderHover};
+                background: rgba(255, 255, 255, 0.12);
+                border-color: rgba(255, 255, 255, 0.35);
+                color: #ffffff;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
             }
             .datajackui-btn.primary {
-                background: ${theme.gradient};
-                border-color: ${theme.borderHover.replace("0.8", "0.8")};
-                color: ${theme.text};
+                background: linear-gradient(135deg, rgba(56, 189, 248, 0.22) 0%, rgba(139, 92, 246, 0.22) 100%);
+                border: 1px solid rgba(56, 189, 248, 0.5);
+                color: #38bdf8 !important;
                 font-weight: 700;
-                box-shadow: 0 4px 15px ${theme.shadow}, inset 0 1px 0 rgba(255,255,255,0.3);
-                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+                box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+                text-shadow: none;
             }
             .datajackui-btn.primary:hover:not([data-disabled="1"]) {
-                background: ${theme.gradientLight};
-                transform: translateY(-3px) scale(1.03);
-                box-shadow: 0 8px 25px rgba(26, 159, 255, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+                background: linear-gradient(135deg, rgba(56, 189, 248, 0.35) 0%, rgba(139, 92, 246, 0.35) 100%);
+                border-color: rgba(56, 189, 248, 0.8);
+                color: #ffffff !important;
+                transform: translateY(-2px) scale(1.02);
+                box-shadow: 0 0 25px rgba(56, 189, 248, 0.45);
             }
 
             /* Modern Toggle Switch */
@@ -1572,9 +1577,9 @@
         header.style.cssText = `display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid ${colors.borderRgba};`;
 
         const title = document.createElement("div");
-        title.style.cssText = `display:flex;align-items:center;gap:10px;font-size:22px;color:${colors.text};font-weight:600;`;
+        title.style.cssText = `display:flex;align-items:center;gap:12px;font-size:22px;color:${colors.text};font-weight:700;font-family:'Outfit', sans-serif;`;
         const titleIcon = document.createElement("img");
-        titleIcon.style.cssText = "width:24px;height:24px;border-radius:4px;";
+        titleIcon.style.cssText = "width:28px;height:28px;border-radius:6px;filter:drop-shadow(0 0 8px rgba(56,189,248,0.5));";
         titleIcon.alt = "DataJackUI";
         try {
           Millennium.callServerMethod("datajackui", "GetIconDataUrl", {
@@ -1585,13 +1590,13 @@
               titleIcon.src =
                 p && p.success && p.dataUrl
                   ? p.dataUrl
-                  : "DataJackUI/datajackui-icon.png";
+                  : "public/datajackui-icon.png";
             } catch (_) {
-              titleIcon.src = "DataJackUI/datajackui-icon.png";
+              titleIcon.src = "public/datajackui-icon.png";
             }
           });
         } catch (_) {
-          titleIcon.src = "DataJackUI/datajackui-icon.png";
+          titleIcon.src = "public/datajackui-icon.png";
         }
         titleIcon.onerror = function () {
           this.style.display = "none";

@@ -3,7 +3,7 @@
     "name":  "datajackui",
     "common_name":  "DataJackUI",
     "description":  "DataJackUI Steam Plugin!",
-    "version":  "1.0",
+    "version":  "1.2",
     "useBackend":  true,
     "backendType":  "lua",
     "include":  [
