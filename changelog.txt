@@ -1,0 +1,4 @@
+[+] Added direct IceBreaker Named Pipe IPC client (\\.\pipe\IceBreaker_IPC) for zero-restart manifest hot-reloading
+[+] Added HotReload RPC method routing through DataJackUI /hot-reload with direct IPC pipe fallback
+[+] Intercepted RestartSteam to perform seamless instant in-memory manifest reload without closing Steam
+[+] Added GetUnlockedAppsFromIpc RPC handler for dynamic license querying

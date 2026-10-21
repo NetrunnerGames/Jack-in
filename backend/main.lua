@@ -84,7 +84,47 @@ function CancelAddViaDataJackUI(appid)
     return backend_request("POST", "/cancel/" .. tostring(appid))
 end
 
+-- ── IceBreaker IPC Named Pipe Bridge (\\.\pipe\IceBreaker_IPC) ────────────────
+
+local function ipc_send(command)
+    local pipe = io.open([[\.\pipe\IceBreaker_IPC]], "r+")
+    if not pipe then return nil end
+    pipe:write(command .. "\n")
+    pipe:flush()
+    local res = pipe:read("*l")
+    pipe:close()
+    return res
+end
+
+function HotReload()
+    -- 1. Try DataJackUI desktop app first
+    local res = backend_request("POST", "/hot-reload")
+    if res then
+        local ok, decoded = pcall(cjson.decode, res)
+        if ok and decoded and decoded.success then
+            return res
+        end
+    end
+
+    -- 2. Direct fallback to IceBreaker IPC Named Pipe in Steam
+    local ipc_res = ipc_send("RELOAD")
+    if ipc_res and ipc_res:find("^OK") then
+        logger.log("Hot-reloaded manifests via direct IceBreaker IPC pipe")
+        return cjson.encode({ success = true, hotReloaded = true, source = "icebreaker_ipc" })
+    end
+
+    return cjson.encode({ success = false, error = "IPC unavailable" })
+end
+
 function RestartSteam()
+    -- Try hot-reloading manifests without killing Steam first!
+    local hr = HotReload()
+    local ok, decoded = pcall(cjson.decode, hr)
+    if ok and decoded and decoded.success and decoded.hotReloaded then
+        logger.log("RestartSteam intercepted: performed zero-restart hot reload via IPC")
+        return hr
+    end
+
     return backend_request("POST", "/restart-steam")
 end
 
