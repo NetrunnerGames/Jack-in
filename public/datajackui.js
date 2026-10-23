@@ -135,8 +135,8 @@
 
   // duplicated from main code thing for reliability
   function isBigPictureMode() {
-    if (typeof window.__LUATOOLS_IS_BIG_PICTURE__ !== "undefined") {
-      return window.__LUATOOLS_IS_BIG_PICTURE__;
+    if (typeof window.__DATAJACKUI_IS_BIG_PICTURE__ !== "undefined") {
+      return window.__DATAJACKUI_IS_BIG_PICTURE__;
     }
     const htmlClasses = document.documentElement.className;
     const userAgent = navigator.userAgent;
@@ -526,7 +526,7 @@
 })();
 
 // ============================================
-// LUATOOLS MAIN CODE
+// DATAJACKUI MAIN CODE
 // ============================================
 (function () {
   "use strict";
@@ -729,7 +729,7 @@
   }
 
   // Detect and save mode at startup
-  window.__LUATOOLS_IS_BIG_PICTURE__ = isBigPictureMode();
+  window.__DATAJACKUI_IS_BIG_PICTURE__ = isBigPictureMode();
 
   // Forward logs to Millennium backend so they appear in the dev console
   function backendLog(message) {
@@ -1005,7 +1005,7 @@
   backendLog("DataJackUI script loaded");
   backendLog(
     "Mode Detection: " +
-      (window.__LUATOOLS_IS_BIG_PICTURE__ ? "BIG PICTURE MODE" : "NORMAL MODE"),
+      (window.__DATAJACKUI_IS_BIG_PICTURE__ ? "BIG PICTURE MODE" : "NORMAL MODE"),
   );
   // anti-spam state
   const logState = {
@@ -1645,7 +1645,7 @@
           "font-size:14px;line-height:1.6;margin-bottom:12px;";
 
         // Add mouse mode tip for Big Picture
-        if (window.__LUATOOLS_IS_BIG_PICTURE__) {
+        if (window.__DATAJACKUI_IS_BIG_PICTURE__) {
           const tip = document.createElement("div");
           tip.style.cssText =
             "background:rgba(102,192,244,0.15);border-left:3px solid #66c0f4;padding:12px 16px;border-radius:6px;font-size:13px;color:#c7d5e0;margin-bottom:16px;line-height:1.5;";
@@ -2669,7 +2669,7 @@
     }
 
     // Check if we're in Big Picture mode
-    const isBigPicture = window.__LUATOOLS_IS_BIG_PICTURE__;
+    const isBigPicture = window.__DATAJACKUI_IS_BIG_PICTURE__;
 
     // Look for the appropriate container based on mode
     let targetContainer;
@@ -3159,7 +3159,7 @@
         backendLog("[DataJackUI] Gamepad detected - Navigation enabled");
 
         // Only show visual hint in Big Picture mode
-        if (window.__LUATOOLS_IS_BIG_PICTURE__) {
+        if (window.__DATAJACKUI_IS_BIG_PICTURE__) {
           const hint = document.createElement("div");
           hint.id = "datajackui-gamepad-hint";
           hint.innerHTML = "🎮 " + lt("bigpicture.mouseTip");

@@ -152,15 +152,6 @@ function DismissLoadedApps()
     return backend_request("POST", "/loaded-apps")
 end
 
--- Compatibility aliases for legacy calls
-HasLuaToolsForApp = HasDataJackUIForApp
-DeleteLuaToolsForApp = DeleteDataJackUIForApp
-StartAddViaLuaToolsFromUrl = StartAddViaDataJackUIFromUrl
-GetAddViaLuaToolsStatus = GetDataJackUIAddStatus
-CancelAddViaLuaTools = CancelAddViaDataJackUI
-StartLuaToolsAdd = StartDataJackUIAdd
-GetLuaToolsAddStatus = GetDataJackUIAddStatus
-PickLuaToolsAddSource = PickDataJackUIAddSource
 
 -- ── Webkit file management ───────────────────────────────────────────────────
 
