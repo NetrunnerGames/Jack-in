@@ -1,3 +1,2 @@
-* Zero-Restart Hot-Reload: Replaced disruptive Steam client restarts with instant in-memory manifest synchronization via \\.\pipe\IceBreaker_IPC.
-* Direct Named Pipe Fallback: Seamless communication between the CEF plugin backend and IceBreaker even when the desktop manager is closed.
-* Resilient RPC Architecture: Added HotReload and GetUnlockedAppsFromIpc handlers for fast entitlement updates.
+* Updated Jack-in branding to DataJackUI PNG logo.
+* Suppressed Steam Family Library banner overlays on unlocked game details.

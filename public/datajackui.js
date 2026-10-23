@@ -80,6 +80,13 @@
         .active-focus {
             scroll-margin: 20px;
         }
+
+        /* Suppress unwanted Steam Family library borrower badge on unlocked games */
+        .z8GYwNt_nbBZrf7OVjs-s,
+        [class*="SharedLibrary"],
+        [class*="FamilyGroup_GameAvailable"] {
+            display: none !important;
+        }
     `;
   document.head.appendChild(gamepadCSS);
 
