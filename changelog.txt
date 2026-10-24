@@ -1,4 +1,3 @@
-[+] Replaced legacy icon with high-resolution DataJackUI branding asset (datajackui-icon.png)
-[+] Updated embedded base64 icon data in datajackui.js to official DataJackUI branding
-[+] Cleaned up legacy luatools namespaces and RPC aliases across plugin backend and frontend
-[+] Added suppression styles for Steam Family borrower badges on unlocked titles
+[+] Updated embedded base64 icon data URI in datajackui.js
+[+] Updated community Discord invitation link in frontend navigation
+[+] Synchronized plugin package manifest and installation hashes for v1.6

@@ -1809,7 +1809,7 @@
             try {
               overlay.remove();
             } catch (_) {}
-            const url = "https://discord.gg/datajackui";
+            const url = "https://discord.gg/SadzcAwdjW";
             try {
               Millennium.callServerMethod("datajackui", "OpenExternalUrl", {
                 url,
