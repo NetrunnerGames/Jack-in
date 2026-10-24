@@ -1,2 +1,3 @@
-* Updated Jack-in branding to DataJackUI PNG logo.
-* Suppressed Steam Family Library banner overlays on unlocked game details.
+- Complete DataJackUI branding overhaul with updated base64 embedded assets
+- Suppression styles for Steam Family borrower badges
+- Cleaned up legacy namespaces and RPC aliases
