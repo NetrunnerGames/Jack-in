@@ -244,7 +244,7 @@
         block: "nearest",
         inline: "nearest",
       });
-      console.log("[Gamepad] Focused element " + index + ":", element);
+      console.log("[Gamepad] Focused element %d:", index, element);
     }
   }
 
@@ -939,7 +939,7 @@
               renderKey = "";
               renderSources(
                 st.sources.map(function (s) {
-                  return Object.assign({}, s, { downloading: false });
+                  return { ...s, downloading: false };
                 }),
                 false,
               );
@@ -1142,13 +1142,14 @@
       themes.forEach(function (t) {
         if (!t || (!t.value && !t.key)) return;
         const key = t.value || t.key;
-        map[key] = Object.assign({}, t, {
+        map[key] = {
+          ...t,
           value: key,
-        });
+        };
       });
       if (Object.keys(map).length === 0) return;
       // Merge into existing THEMES if themes have been loaded, otherwise start from DEFAULT_THEMES
-      THEMES = Object.assign({}, themesLoaded ? THEMES : DEFAULT_THEMES, map);
+      THEMES = { ...(themesLoaded ? THEMES : DEFAULT_THEMES), ...map };
       themesLoaded = true;
       try {
         ensureDataJackUIStyles();
